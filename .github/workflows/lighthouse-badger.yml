@@ -52,7 +52,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: ${{ env.REPOSITORY }}
-          # Prefer LIGHTHOUSE_BADGER_TOKEN when provided; fallback to GITHUB_TOKEN for same-repo runs.
+          # Prefer LIGHTHOUSE_BADGER_TOKEN when provided; fallback to github.token for same-repo runs.
           token: ${{ secrets.LIGHTHOUSE_BADGER_TOKEN || github.token }}
           ref: ${{ env.BRANCH }}
       - uses: actions/checkout@v4
