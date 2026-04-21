@@ -34,7 +34,11 @@ jobs:
           fi
           rendercv render "$cv_file"
           mkdir -p assets/rendercv/rendercv_output
-          cp -f rendercv_output/* assets/rendercv/rendercv_output/ || true
+          if [ ! -d rendercv_output ] || [ -z "$(ls -A rendercv_output)" ]; then
+            echo "No RenderCV output files found in rendercv_output."
+            exit 1
+          fi
+          cp -f rendercv_output/* assets/rendercv/rendercv_output/
           rm -f assets/rendercv/rendercv_output/*.typ
       - name: Upload rendercv_output as an artifact
         uses: actions/upload-artifact@v4
